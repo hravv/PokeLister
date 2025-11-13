@@ -50,7 +50,7 @@ function App() {
     }
   }
   function handleRemove (index) {
-    pokemonList.splice(index, 1);
+    setPokemonList(pokemonList.filter((_, i) => i !== index));
   }
   return (
     <>
@@ -74,9 +74,9 @@ function App() {
           <button id='add' disabled={pokemonList.length >= 6} onClick={handleAdd}>Add</button>
         </div>
         <div>
-          <div id='img-grid'>{pokemonList.map((Pokemon, index)=> {
+          <div className='grid grid-cols-3 grid-row-2 w-fit mx-auto'>{pokemonList.map((Pokemon, index)=> {
             return (
-              <figure key={index}>
+              <figure key={index} className='w-fit border border-black'>
               <img src={Pokemon.img} alt={Pokemon.name} />
               <figcaption>{Pokemon.name}</figcaption>
               <button onClick={()=>handleRemove(index)}>Remove</button>
