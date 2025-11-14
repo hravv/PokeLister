@@ -1,3 +1,10 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+html, body, #root {
+    height: 100%;
+    font-family: Lexend Deca;
+}
+
+@theme {
+    --color-darkazure: #345ca1;
+}

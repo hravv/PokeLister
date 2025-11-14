@@ -53,27 +53,32 @@ function App() {
     setPokemonList(pokemonList.filter((_, i) => i !== index));
   }
   return (
-    <>
-      <div className="title w-fit mx-auto">
+    <div className='h-full bg-blue-300'>
+      <div className="title w-fit mx-auto pt-6">
       {/*<a href="https://fontmeme.com/pokemon-font/"><img src="https://fontmeme.com/permalink/250520/3d0199ed9ade02ff11817812eec9bc42.png" alt="pokemon-font" border="0" /></a>*/}
       <img src={title} className='w-fit'/>
       </div>
+      <div className='h-20' />
       <section className='maincontent text-center'>
         <div>
-          <p className=''>Enter the name of a Pokémon and add it to a list of your favourites!</p>
-          <input type="text" id='textinput' value={input} onChange={(e)=>{setInput(e.target.value)}}/>
+          <p className='mb-15'>Enter the name of a Pokémon and add it to a list of your favourites!</p>
+          <input type="text" className="bg-white rounded-sm" value={input} onChange={(e)=>{setInput(e.target.value)}}/>
           <button type='submit' id='submit' onClick={()=>fetchPokemon(input)}>Enter</button>
         </div>
-        <div className='w-fit h-fit bg-indigo-200 mx-auto'>
-          <figure id='prevfigure'>
-            <div id='img-bg'>
-              <img src={nameValid ? (chosenPokemon ? chosenImg : pokeball) : pokeball} id="previmage" className="w-[120px] h-[120px] object-contain" />
+        <div className='w-80 h-100 rounded-md mx-auto px-8 py-10 bg-darkazure flex flex-col items-center'>
+          <figure className='prevfigure flex flex-col justify-middle items-center'>
+            <div className='w-fit flex justify-center align-middle'>
+              <img src={nameValid ? (chosenPokemon ? chosenImg : pokeball) : pokeball} className="w-40 h-40 object-contain z-2" />
+              <span className='bg-white h-40 w-40 absolute z-1 rounded-[50%]' />
             </div>
-            <figcaption>{nameValid ? (chosenPokemon ? chosenPokemon : "No Pokémon Selected") : "Invalid Name!"}</figcaption>
+            <figcaption className='text-nowrap '>{nameValid ? (chosenPokemon ? chosenPokemon : "No Pokémon Selected") : "Invalid Name!"}</figcaption>
           </figure>
-          <button id='add' disabled={pokemonList.length >= 6} onClick={handleAdd}>Add</button>
+          <button disabled={pokemonList.length >= 6} onClick={handleAdd}>Add</button>
         </div>
         <div>
+          <div className='grid grid-cols-3 grid-row-2 w-fit mx-auto'>
+            <div />
+          </div>
           <div className='grid grid-cols-3 grid-row-2 w-fit mx-auto'>{pokemonList.map((Pokemon, index)=> {
             return (
               <figure key={index} className='w-fit border border-black'>
@@ -86,7 +91,7 @@ function App() {
           )}</div>
         </div>
       </section>
-    </>
+    </div>
   )
 }
 
