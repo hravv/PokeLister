@@ -13,6 +13,9 @@ function App() {
   const [pokemonList, setPokemonList] = useState([]);
   const [nameValid, setNameValid] = useState(true);
 
+  const showPokeball = !nameValid ? true : (!chosenPokemon);
+  const displayBoxes = [0, 1, 2, 3, 4, 5];
+
   class Pokemon {
     constructor (name, img) {
       this.name = name;
@@ -53,7 +56,7 @@ function App() {
     setPokemonList(pokemonList.filter((_, i) => i !== index));
   }
   return (
-    <div className='h-full bg-blue-300'>
+    <div className='h-screen'>
       <div className="title w-fit mx-auto pt-6">
       {/*<a href="https://fontmeme.com/pokemon-font/"><img src="https://fontmeme.com/permalink/250520/3d0199ed9ade02ff11817812eec9bc42.png" alt="pokemon-font" border="0" /></a>*/}
       <img src={title} className='w-fit'/>
@@ -62,34 +65,85 @@ function App() {
       <section className='maincontent text-center'>
         <div>
           <p className='mb-15'>Enter the name of a Pokémon and add it to a list of your favourites!</p>
-          <input type="text" className="bg-white rounded-sm" value={input} onChange={(e)=>{setInput(e.target.value)}}/>
-          <button type='submit' id='submit' onClick={()=>fetchPokemon(input)}>Enter</button>
+          <input type="text" className="bg-white rounded-sm mb-5 mr-2 pl-2" value={input} onChange={(e)=>{setInput(e.target.value)}}/>
+          <button type='submit' id='submit' className='bg-amber-300 hover:bg-amber-100 transition-colors rounded-md px-3 py-1 cursor-pointer' onClick={()=>fetchPokemon(input)}>Enter</button>
         </div>
-        <div className='w-80 h-100 rounded-md mx-auto px-8 py-10 bg-darkazure flex flex-col items-center'>
+
+        <div className='w-80 h-90 rounded-md mx-auto mb-10 px-8 py-10 bg-darkazure flex flex-col items-center'>
           <figure className='prevfigure flex flex-col justify-middle items-center'>
-            <div className='w-fit flex justify-center align-middle'>
-              <img src={nameValid ? (chosenPokemon ? chosenImg : pokeball) : pokeball} className="w-40 h-40 object-contain z-2" />
-              <span className='bg-white h-40 w-40 absolute z-1 rounded-[50%]' />
+            <div className='flex relative items-center justify-center bg-white h-40 w-40 z-0 rounded-full overflow-hidden mb-5'>
+              <img src={showPokeball ? pokeball : chosenImg} 
+                  className={showPokeball ? "w-25 h-25 object-contain z-2" 
+                                          : "w-37 h-37 object-contain z-2"}
+                  alt={showPokeball ? "Empty Poké Ball" : chosenPokemon} 
+              />                               
+            
             </div>
-            <figcaption className='text-nowrap '>{nameValid ? (chosenPokemon ? chosenPokemon : "No Pokémon Selected") : "Invalid Name!"}</figcaption>
+            <span className='bg-white rounded-sm p-1 mb-5'>
+            <figcaption className='text-nowrap'>{nameValid ? (chosenPokemon ? chosenPokemon : "No Pokémon Selected") : "Invalid Name!"}</figcaption>
+            </span>
           </figure>
-          <button disabled={pokemonList.length >= 6} onClick={handleAdd}>Add</button>
+          <button disabled={pokemonList.length >= 6}
+                  onClick={handleAdd}
+                  className='bg-amber-300 hover:bg-amber-100 transition-colors rounded-md px-3 py-1 cursor-pointer'>Add
+                  </button>
         </div>
-        <div>
-          <div className='grid grid-cols-3 grid-row-2 w-fit mx-auto'>
-            <div />
-          </div>
-          <div className='grid grid-cols-3 grid-row-2 w-fit mx-auto'>{pokemonList.map((Pokemon, index)=> {
+
+
+        {/*<div className='flex'>
+          <div className='grid grid-cols-3 grid-row-2 w-fit mx-auto relative'>
+            {displayBoxes.map((_ , i) => {
+              return (
+                <span key={i} className='bg-darkazure h-55 w-45 mx-5 my-5 z-1 rounded-lg' />
+              )  
+            })
+            }
+
+            {pokemonList.map((Pokemon, index)=> {
             return (
-              <figure key={index} className='w-fit border border-black'>
-              <img src={Pokemon.img} alt={Pokemon.name} />
-              <figcaption>{Pokemon.name}</figcaption>
-              <button onClick={()=>handleRemove(index)}>Remove</button>
-            </figure>
+              <figure key={index} className='w-fit mx-4 z-1'>
+                <img src={Pokemon.img} alt={Pokemon.name} className='h-45 w-45 object-contain' />
+                <figcaption>{Pokemon.name}</figcaption>
+                <button onClick={()=>handleRemove(index)}
+                        className='bg-amber-300 hover:bg-amber-100 transition-colors rounded-md px-3 py-1 cursor-pointer'
+                >Remove</button>
+              </figure>
             )
           }
           )}</div>
+        </div>*/}
+
+        <div className='grid grid-cols-3 grid-rows-2 gap-6 w-fit mx-auto'>
+          {displayBoxes.map((_, i) => {
+            return (
+              <div key={i} className='relative h-68 w-55 mx-5 my-5 flex items-center justify-center'>
+                
+                <span className='absolute inset-0 bg-darkazure rounded-3xl' />
+
+                {pokemonList[i] && (
+                  <figure className='relative z-10 flex flex-col items-center'>
+                    <img
+                      src={pokemonList[i].img}
+                      alt={pokemonList[i].name}
+                      className='h-45 w-45 object-contain'
+                    />
+                    <span className='bg-white rounded-sm p-1 mb-5'>
+                      <figcaption>{pokemonList[i].name}</figcaption>
+                    </span>
+                    <button
+                      onClick={() => handleRemove(i)}
+                      className='bg-amber-300 hover:bg-amber-100 transition-colors rounded-md px-3 py-1 cursor-pointer'
+                    >
+                      Remove
+                    </button>
+                  </figure>
+                )}
+              </div>
+            );
+          })}
         </div>
+
+          
       </section>
     </div>
   )
