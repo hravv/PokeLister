@@ -3,7 +3,18 @@
 html, body, #root {
     min-height: 100%;
     font-family: Lexend Deca;
-    background-color: #8ec5fe;
+    background: #8ec5fe url(./assets/bgbluepokeball.png) fixed ;
+    animation: scrollBg 20s linear infinite;
+    
+}
+
+@keyframes scrollBg {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 500px -500px; 
+  }
 }
 
 @theme {
