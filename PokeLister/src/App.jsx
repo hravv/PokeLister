@@ -23,6 +23,7 @@ function App() {
   const [topRated, setTopRated] = useState([]);
   const [topSprites, setTopSprites] = useState([]);
   const [isTopLoading, setIsTopLoading] = useState(null);
+  const [showAdded, setShowAdded] = useState(false);
 
   const showPokeball = !nameValid || !chosenPokemon || !chosenImg;
   const displayBoxes = [0, 1, 2, 3, 4, 5];
@@ -121,9 +122,13 @@ function App() {
   }
 
   function handleAdd () {
+    setShowAdded(true);
     if (pokemonList.length < 6) {
       setPokemonList([...pokemonList , new Pokemon(chosenPokemon, chosenImg)]);
     }
+    setTimeout(()=> {
+      setShowAdded(false);
+    }, 1600)
   }
   function handleRemove (index) {
     setPokemonList(pokemonList.filter((_, i) => i !== index));
@@ -194,12 +199,16 @@ function App() {
                 <span className='bg-white rounded-sm p-1 mb-2'>
                   <figcaption className='text-nowrap text-[1.3rem]'>{nameValid ? (chosenPokemon ? chosenPokemon : "No Pokémon Selected") : "Invalid Name!"}</figcaption>
                 </span>
-                <img src={isLiked ? heartpink : heart} onClick={() => handleLike(chosenPokemon)} hidden={!chosenPokemon || !nameValid} className='h-6 w-6 object-contain mb-3 cursor-pointer' />
+                <img src={isLiked ? heartpink : heart} onClick={() => handleLike(chosenPokemon)} hidden={!chosenPokemon || !nameValid} className='h-8 w-8 object-contain mb-3 cursor-pointer' />
                 <p className='text-white mb-2' hidden={!chosenPokemon || !nameValid}>Total Likes: {likes[chosenPokemon] ?? 0}</p>
             </figure>
-            <button disabled={pokemonList.length >= 6 || !chosenPokemon}
+            <button disabled={pokemonList.length >= 6 || !chosenPokemon || showAdded}
                     onClick={handleAdd}
-                    className='bg-amber-300 hover:bg-amber-100 transition-colors rounded-md px-3 py-1 cursor-pointer'>Add
+                    className='bg-amber-300 hover:bg-amber-100 transition-colors rounded-md px-3 py-1 cursor-pointer'>
+                    {
+                    !showAdded ? "Add"
+                               : "Added!"
+                    }
             </button>
           </div>
 
@@ -211,7 +220,7 @@ function App() {
             </span>
             {isTopLoading ?
               <div>
-                <img className='loadingBall' src={pokeballclosed} alt="Closed Pokeball" />
+                <img className='loadingBall mt-10' src={pokeballclosed} alt="Closed Pokeball" />
               </div>
             :
               <ul className='flex flex-col items-center'>
