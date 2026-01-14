@@ -1,0 +1,1 @@
+A small ReactJS project you can use to select up to 6 Pokemon to add to a team of your favourites. You can search for any Pokemon you like, and also leave it a rating! See how other Pokemon perform via the leaderboard.
