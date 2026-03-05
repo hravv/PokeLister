@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import Footer from './components/Footer'
 import pokeball from './assets/pokeball.png'
-import pokeballclosed from '/pokeballclosed.png'
+import pokeballclosed from './assets/pokeballclosed.png'
 import title from './assets/pokelister.png'
 import heart from './assets/heart.png'
 import heartpink from './assets/heartpink.png'
