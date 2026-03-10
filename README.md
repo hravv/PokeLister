@@ -110,111 +110,41 @@ Database (Neon)
 
 ---
 
-## Installation
-
-### Clone the Repository
-
-```bash
-git clone https://github.com/YOUR_USERNAME/YOUR_REPO.git
-cd YOUR_REPO
-```
-
-### Install Dependencies
-
-Frontend:
-
-```bash
-cd client
-npm install
-```
-
-Backend:
-
-```bash
-cd server
-npm install
-```
-
-### Run Development Servers
-
-Backend:
-
-```bash
-npm run dev
-```
-
-Frontend:
-
-```bash
-npm start
-```
-
----
-
-## Environment Variables
-
-Create a `.env` file in the server folder:
-
-```env
-PORT=5000
-DATABASE_URL=your_database_connection_string
-JWT_SECRET=your_secret_key
-CLIENT_URL=http://localhost:3000
-```
-
-Do not commit your `.env` file.
-
----
-
 ## Usage
 
-1. Register an account  
-2. Login to dashboard  
-3. Create / edit / delete records  
-4. View analytics  
+1. Enter Pokemon name in input field (try 'Pikachu' if unsure)  
+2. Rate Pokemon by clicking heart button (optional)
+3. Scroll to view team
+4. Remove item if necessary
 
 ---
 
 ## Screenshots
 
-```
-assets/
- ├── home.png
- ├── dashboard.png
- └── login.png
-```
-
-Add inside README:
-
-```markdown
-![Home Page](assets/home.png)
-![Dashboard](assets/dashboard.png)
-```
+![PokeLister](assets/pokelister.png)
 
 ---
 
 ## Deployment
 
-- Backend deployed on Render / Railway / AWS
-- Frontend deployed on Vercel / Netlify
-- Database hosted on MongoDB Atlas / Supabase
+- Backend deployed on Render
+- Frontend deployed on Vercel
+- Database hosted on Neon
 
 ---
 
 ## Future Improvements
 
-- Add email verification
-- Add unit & integration testing
-- Add real-time notifications
-- Improve UI animations
-- Add admin dashboard
+- Add 'scroll down' arrow appearing on add
+- Improve animations
+- Add option to save list as image
 
 ---
 
 ## Credits
 
-Developer: Your Name  
-GitHub: https://github.com/YOUR_USERNAME  
+Developer: Harvey Burman
+GitHub: https://github.com/hravv  
 
 ---
 
