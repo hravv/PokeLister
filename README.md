@@ -1,6 +1,6 @@
 # PokeLister
 
-
+Use this app to search for any Pokemon, give it a like, and add it to your team!
 
 Live Demo: https://poke-lister-seven.vercel.app/
 Frontend Repo: https://github.com/hravv/PokeLister
